@@ -1,7 +1,50 @@
 <!DOCTYPE html>
 <html>
-<body>
+<script src='https://d3js.org/d3.v5.min.js'></script>
+<style> circle {fill: lightblue; stroke: black;} </style>
+<body onload='init()'>
 <h1>My D3 Narrative Visualization Project</h1>
 <p>I'm hosted with GitHub Pages.</p>
+<svg width=300 height=300>
+</svg>
+<script>
+async function init() {
+const data = await d3.csv('https://flunky.github.io/cars2017.csv');
+console.log(data);
+
+var width = 300;
+var height = 300;
+var margin = 50;
+
+var svg = d3.select("svg");
+
+
+var g = svg.append("g").attr("transform", "translate(" + (width - margin) / 5 + "," + (height - margin) / 5 + ")");
+
+var xlogScale = d3.scaleLog()
+  .domain([10, 150])
+  .range([0, 200]);
+var ylogScale = d3.scaleLog()
+  .domain([10, 150])
+  .range([200, 0]);
+var scatterG = svg.selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", function(d) {return xlogScale(d.AverageCityMPG); } )
+      .attr("cy", function(d) {return ylogScale(d.AverageHighwayMPG);})
+      .attr("r", function(d) {return +d.EngineCylinders + 2;});
+svg.append("g")
+     .attr("transform", "translate(50,"+ 50 +")")
+     .call(d3.axisLeft(ylogScale).tickValues([10, 20, 50,100]).tickFormat(d3.format("~s")))
+    .attr("text-anchor", "end")
+    .attr("fill", "none");
+svg.append("g")
+     .attr("transform", "translate(50," + 250 + ")")
+    .call(d3.axisBottom(xlogScale).tickValues([10, 20, 50, 100]).tickFormat(d3.format("~s")))
+    .attr("text-anchor", "middle")
+    .attr("fill", "none");
+}
+</script>
 </body>
 </html>
