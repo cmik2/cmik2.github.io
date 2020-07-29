@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<div>
+<a href="http://cmik2.github.io/index.html" rel="back">Back</a>
+<a href="http://cmik2.github.io/scene3.html" rel="next">Nextk</a>
+</div>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+  <script>
+    var container = document.currentScript.parentNode;
+    var svg = d3.select(container)
+      .append("svg");
+    var data = d3.range(10).map(d => Math.random() * 150);
+    var scale = d3.scaleBand()
+      .domain(data)
+      .range([0, 300])
+      .padding(0.4);
+    var bars = svg.selectAll(null)
+      .data(data)
+      .enter()
+      .append("rect")
+      .style("fill", "steelblue")
+      .attr("x", d => scale(d))
+      .attr("width", scale.bandwidth())
+      .attr("height", d => 150 - d)
+      .attr("y", Number)
+  </script>
+<div>
+  <h3>I am div 3</h3>
+</div>
+<div>
+  <h3>I am div 4</h3>
+</div>
+}
+</script>
+</body>
+</html>
