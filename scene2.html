@@ -18,8 +18,9 @@
 <div id="my_dataviz"></div>
 
 <script>
-const data = d3.csv('https://cmik2.github.io/revenue-of-starbucks-wld.csv');
-console.log(data);
+const data = d3.csv('https://cmik2.github.io/revenue-of-starbucks-wld.csv', function(data){
+    console.log(data)
+});
 
 // Create 2 datasets
 var data1 = [
