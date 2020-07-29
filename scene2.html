@@ -76,8 +76,9 @@ function update(data) {
     .call(yAxis);
 
   // Create a update selection: bind to the new data
+    //.data([data], function(d){ return d.year });
   var u = svg.selectAll(".lineTest")
-    .data([data], function(d){ return d.year });
+    .data(data);
 
   // Updata the line
   u
