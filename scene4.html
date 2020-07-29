@@ -6,7 +6,7 @@
 </svg>
 <script>
 async function init() {
-const data = await d3.csv('https://flunky.github.io/cars2017.csv');
+const data = await d3.csv('https://cmik2.github.io/revenue-of-starbucks-wld.csv');
 console.log(data);
 
 var width = 300;
@@ -28,8 +28,8 @@ var scatterG = svg.selectAll("dot")
     .data(data)
     .enter()
     .append("circle")
-      .attr("cx", function(d) {return xlogScale(d.AverageCityMPG); } )
-      .attr("cy", function(d) {return ylogScale(d.AverageHighwayMPG);})
+      .attr("cx", function(d) {return xlogScale(d.year); } )
+      .attr("cy", function(d) {return ylogScale(d.revenue);})
       .attr("r", function(d) {return +d.EngineCylinders + 2;});
 svg.append("g")
      .attr("transform", "translate(50,"+ 50 +")")
