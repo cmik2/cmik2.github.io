@@ -5,7 +5,16 @@
 <a href="http://cmik2.github.io/scene3.html" rel="next">Nextk</a>
 </div>
 
+<!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Add 2 buttons -->
+<button onclick="update(data1)">Dataset 1</button>
+<button onclick="update(data2)">Dataset 2</button>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
 <script>
 // Create 2 datasets
 var data1 = [
