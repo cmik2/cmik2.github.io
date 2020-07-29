@@ -16,8 +16,7 @@
 <div id="my_dataviz"></div>
 
 <script>
-async function init() {
-const data = await d3.csv('https://cmik2.github.io/revenue-of-starbucks-wld.csv');
+const data = d3.csv('https://cmik2.github.io/revenue-of-starbucks-wld.csv');
 
 // Create 2 datasets
 var data1 = [
@@ -98,7 +97,6 @@ function update(data) {
 // At the beginning, I run the update function on the first dataset:
 //update(data1)
 update(data)
-}
 </script>
 
 <div>
