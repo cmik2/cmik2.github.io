@@ -33,7 +33,7 @@ d3.csv("number-of-starbucks.csv",
 
   // When reading the csv, I must format variables:
   function(d){
-    return { year : d.year, company-operated : d.company-operated }
+    return { year : d.year, company_operated : d.company_operated }
   },
 
   // Now I can use this dataset:
@@ -48,7 +48,7 @@ d3.csv("number-of-starbucks.csv",
      .call(d3.axisBottom(x).ticks(data.length).tickFormat(d3.format("d")))
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.company-operated; })])
+      .domain([0, d3.max(data, function(d) { return +d.company_operated; })])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
@@ -61,7 +61,7 @@ d3.csv("number-of-starbucks.csv",
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) { return x(d.year) })
-        .y(function(d) { return y(d.company-operated) })
+        .y(function(d) { return y(d.company_operated) })
         )
 
 })
