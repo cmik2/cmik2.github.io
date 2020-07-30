@@ -23,42 +23,56 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-//Read the data
-d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv", function(data) {
 
-  // When reading the csv, I must format variables:
-  function(d){
-    return { year : d.year, revenue : d.revenue }
-  },
+  // List of subgroups = header of the csv files = soil condition here
+  var subgroups = data.columns.slice(1)
 
-  // Now I can use this dataset:
-  function(data) {
+  // List of groups = species here = value of the first column called group -> I show them on the X axis
+  var groups = d3.map(data, function(d){return(d.group)}).keys()
 
-    // Add X axis --> it is a year format
-   var x = d3.scaleLinear()
-     .domain(d3.extent(data, function(d) { return d.year; }))
-     .range([ 0, width ]);
-   svg.append("g")
-     .attr("transform", "translate(0," + height + ")")
-     .call(d3.axisBottom(x).ticks(data.length).tickFormat(d3.format("d")))
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.revenue; })])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(y));
+  // Add X axis
+  var x = d3.scaleBand()
+      .domain(groups)
+      .range([0, width])
+      .padding([0.2])
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickSizeOuter(0));
 
-    // Add the line
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.year) })
-        .y(function(d) { return y(d.revenue) })
-        )
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, 60])
+    .range([ height, 0 ]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
 
+  // color palette = one color per subgroup
+  var color = d3.scaleOrdinal()
+    .domain(subgroups)
+    .range(['#e41a1c','#377eb8','#4daf4a'])
+
+  //stack the data? --> stack per subgroup
+  var stackedData = d3.stack()
+    .keys(subgroups)
+    (data)
+
+  // Show the bars
+  svg.append("g")
+    .selectAll("g")
+    // Enter in the stack data = loop key per key = group per group
+    .data(stackedData)
+    .enter().append("g")
+      .attr("fill", function(d) { return color(d.key); })
+      .selectAll("rect")
+      // enter a second time = loop subgroup per subgroup to add all rectangles
+      .data(function(d) { return d; })
+      .enter().append("rect")
+        .attr("x", function(d) { return x(d.data.group); })
+        .attr("y", function(d) { return y(d[1]); })
+        .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+        .attr("width",x.bandwidth())
 })
 
 </script>
@@ -70,6 +84,5 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
   <h3>I am div 4</h3>
 </div>
 }
-</script>
 </body>
 </html>
