@@ -40,7 +40,7 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
      .range([ 0, width ]);
    svg.append("g")
      .attr("transform", "translate(0," + height + ")")
-     .call(d3.axisBottom(x).ticks(data.length))
+     .call(d3.axisBottom(x).ticks(data.length).tickFormat(d3.format("d")))
     // Add Y axis
     var y = d3.scaleLinear()
       .domain([0, d3.max(data, function(d) { return +d.revenue; })])
