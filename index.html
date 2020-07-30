@@ -3,32 +3,74 @@
 <div>
 <a href="https://cmik2.github.io/scene2.html" rel="next">Next</a>
 </div>
-<script src="https://d3js.org/d3.v5.min.js"></script>
 <div>
   <h3>I am div 1</h3>
 </div>
 <div>
   <h3>I am div 2, I have a chart</h3>
-  <script>
-    var container = document.currentScript.parentNode;
-    var svg = d3.select(container)
-      .append("svg");
-    var data = d3.range(10).map(d => Math.random() * 150);
-    var scale = d3.scaleBand()
-      .domain(data)
-      .range([0, 300])
-      .padding(0.4);
-    var bars = svg.selectAll(null)
-      .data(data)
-      .enter()
-      .append("rect")
-      .style("fill", "steelblue")
-      .attr("x", d => scale(d))
-      .attr("width", scale.bandwidth())
-      .attr("height", d => 150 - d)
-      .attr("y", Number)
-  </script>
 </div>
+<!-- Load d3.js -->
+<!-- script src="https://d3js.org/d3.v5.min.js"></script ---->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 690 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
+
+  // When reading the csv, I must format variables:
+  function(d){
+    return { year : d.year, revenue : d.revenue }
+  },
+
+  // Now I can use this dataset:
+  function(data) {
+
+    // Add X axis --> it is a year format
+   var x = d3.scaleLinear()
+     .domain(d3.extent(data, function(d) { return d.year; }))
+     .range([ 0, width ]);
+   svg.append("g")
+     .attr("transform", "translate(0," + height + ")")
+     .call(d3.axisBottom(x).ticks(data.length).tickFormat(d3.format("d")))
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(data, function(d) { return +d.revenue; })])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    // Add the line
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.year) })
+        .y(function(d) { return y(d.revenue) })
+        )
+
+})
+</script>
+
 <div>
   <h3>I am div 3</h3>
 </div>
