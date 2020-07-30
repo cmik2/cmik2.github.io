@@ -18,27 +18,11 @@
 <div id="my_dataviz"></div>
 
 <script>
-const data = d3.csv('https://cmik2.github.io/revenue-of-starbucks-wld.csv', function(data){
-    console.log(data)
-});
-
-// Create 2 datasets
-var data1 = [
-   {ser1: 0.3, ser2: 4},
-   {ser1: 2, ser2: 16},
-   {ser1: 3, ser2: 8}
-];
-
-var data2 = [
-   {ser1: 1, ser2: 7},
-   {ser1: 4, ser2: 1},
-   {ser1: 6, ser2: 8}
-];
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 50},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 690 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -49,58 +33,43 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// Initialise a X axis:
-var x = d3.scaleLinear().range([0,width]);
-var xAxis = d3.axisBottom().scale(x);
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .attr("class","myXaxis")
+//Read the data
+d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
 
-// Initialize an Y axis
-var y = d3.scaleLinear().range([height, 0]);
-var yAxis = d3.axisLeft().scale(y);
-svg.append("g")
-  .attr("class","myYaxis")
+  // When reading the csv, I must format variables:
+  function(d){
+    return { year : d.year, revenue : d.revenue }
+  },
 
-// Create a function that takes a dataset as input and update the plot:
-function update(data) {
+  // Now I can use this dataset:
+  function(data) {
 
-  // Create the X axis:
-  x.domain([0, d3.max(data, function(d) { return d.year }) ]);
-  svg.selectAll(".myXaxis").transition()
-    .duration(3000)
-    .call(xAxis);
+    // Add X axis --> it is a year format
+   var x = d3.scaleLinear()
+     .domain(d3.extent(data, function(d) { return d.year; }))
+     .range([ 0, width ]);
+   svg.append("g")
+     .attr("transform", "translate(0," + height + ")")
+     .call(d3.axisBottom(x).ticks(data.length).tickFormat(d3.format("d")))
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(data, function(d) { return +d.revenue; })])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
 
-  // create the Y axis
-  y.domain([0, d3.max(data, function(d) { return d.revenue  }) ]);
-  svg.selectAll(".myYaxis")
-    .transition()
-    .duration(3000)
-    .call(yAxis);
-
-  // Create a update selection: bind to the new data
-  var u = svg.selectAll(".lineTest")
-    .data([data], function(d){ return d.year });
-
-  // Updata the line
-  u
-    .enter()
-    .append("path")
-    .attr("class","lineTest")
-    .merge(u)
-    .transition()
-    .duration(3000)
-    .attr("d", d3.line()
-      .x(function(d) { return x(d.year); })
-      .y(function(d) { return y(d.revenue); }))
+    // Add the line
+    svg.append("path")
+      .datum(data)
       .attr("fill", "none")
       .attr("stroke", "steelblue")
-      .attr("stroke-width", 2.5)
-}
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.year) })
+        .y(function(d) { return y(d.revenue) })
+        )
 
-// At the beginning, I run the update function on the first dataset:
-//update(data1)
-update(data)
+})
 </script>
 
 <div>
