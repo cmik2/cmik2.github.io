@@ -33,7 +33,7 @@ d3.csv("number-of-starbucks.csv",
 
   // When reading the csv, I must format variables:
   function(d){
-    return { year : d.year, company_operated : d.company_operated }
+    return { year : d.year, company_operated : d.company_operated, licensed : d.licensed }
   },
 
   // Now I can use this dataset:
