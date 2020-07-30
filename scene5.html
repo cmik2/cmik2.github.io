@@ -24,13 +24,14 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv", function(data) {
+d3.csv("https://cmik2.github.io/number-of-starbucks.csv", function(data) {
 
-  // List of subgroups = header of the csv files = soil condition here
+  // List of subgroups = header of the csv files =  store type here
+
   var subgroups = data.columns.slice(1)
 
-  // List of groups = species here = value of the first column called group -> I show them on the X axis
-  var groups = d3.map(data, function(d){return(d.group)}).keys()
+  // List of year here = value of the first column called group -> I show them on the X axis
+  var groups = d3.map(data, function(d){return(d.year)}).keys()
 
   // Add X axis
   var x = d3.scaleBand()
@@ -51,7 +52,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
   // color palette = one color per subgroup
   var color = d3.scaleOrdinal()
     .domain(subgroups)
-    .range(['#e41a1c','#377eb8','#4daf4a'])
+    .range(['#e41a1c','#377eb8'])
 
   //stack the data? --> stack per subgroup
   var stackedData = d3.stack()
@@ -69,7 +70,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/da
       // enter a second time = loop subgroup per subgroup to add all rectangles
       .data(function(d) { return d; })
       .enter().append("rect")
-        .attr("x", function(d) { return x(d.data.group); })
+        .attr("x", function(d) { return x(d.data.year); })
         .attr("y", function(d) { return y(d[1]); })
         .attr("height", function(d) { return y(d[0]) - y(d[1]); })
         .attr("width",x.bandwidth())
