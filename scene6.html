@@ -121,8 +121,11 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
             .on("mousemove", mousemove);
 
     function mousemove() {
-		return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");}
-})
+            focus.select(".tooltip-date").text(dateFormatter(d.date));
+            focus.select(".tooltip-likes").text(formatValue(d.likes));
+    }
+  }
+)
 </script>
 
 <div>
