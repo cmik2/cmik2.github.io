@@ -80,6 +80,7 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
 
     var tooltip = d3.select("body")
 			.append("div")
+			.style("position", "absolute")
 			.style("z-index", "10")
 			.style("width","60px")                  
 			.style("height","28px")                 
@@ -96,7 +97,14 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
         .attr("class", "y")                                // **********
         .style("fill", "none")                             // **********
         .style("stroke", "blue")                           // **********
-        .attr("r", 4);                                     // **********
+        .attr("r", 4)                                     // **********
+        .on("mouseover", function(d){
+        .on("mouseover", function() { focus.style("display", null); })
+
+        })
+        .on("mousemove", function(){return tooltip.style("top", (event.pageY-
+10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
     
     // append the rectangle to capture mouse               // **********
     svg.append("rect")                                     // **********
