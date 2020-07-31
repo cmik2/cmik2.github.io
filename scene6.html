@@ -74,14 +74,24 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
         .y(function(d) { return y(d.revenue) })
         );
 
-        var focus = svg.append("g")
-            .attr("class", "focus")
-            .style("display", "none");
-
-        focus.append("circle")
-            .attr("r", 5);
-
-        focus.append("rect")
+    var tooltip = d3.select("body")
+			.append("div")
+			.style("position", "absolute")
+			.style("z-index", "10")
+			.style("width","60px")                  
+			.style("height","28px")                 
+			.style("padding","2px")             
+			.style("font","12px sans-serif")
+			.style("border","0px")      
+			.style("border-radius","8px")  
+			.style("background", "lightsteelblue")
+			.style("visibility", "hidden");
+    var focus = svg.append("g")
+			.attr("class", "focus")
+			.style("display", "none");
+    focus.append("circle")
+		.attr("r", 5);
+    focus.append("rect")
             .attr("class", "tooltip")
             .attr("width", 100)
             .attr("height", 50)
@@ -89,23 +99,20 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
             .attr("y", -22)
             .attr("rx", 4)
             .attr("ry", 4);
-
-        focus.append("text")
+    focus.append("text")
             .attr("class", "tooltip-date")
             .attr("x", 18)
             .attr("y", -2);
-
-        focus.append("text")
+    focus.append("text")
             .attr("x", 18)
             .attr("y", 18)
             .text("Likes:");
-
-        focus.append("text")
+    focus.append("text")
             .attr("class", "tooltip-likes")
             .attr("x", 60)
             .attr("y", 18);
 
-        svg.append("rect")
+    svg.append("rect")
             .attr("class", "overlay")
             .attr("width", width)
             .attr("height", height)
@@ -113,16 +120,8 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
             .on("mouseout", function() { focus.style("display", "none"); })
             .on("mousemove", mousemove);
 
-        function mousemove() {
-            var x0 = x.invert(d3.mouse(this)[0]),
-                i = bisectDate(data, x0, 1),
-                d0 = data[i - 1],
-                d1 = data[i],
-                d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-            focus.attr("transform", "translate(" + x(d.date) + "," + y(d.likes) + ")");
-            focus.select(".tooltip-date").text("hello");
-            focus.select(".tooltip-likes").text("world");
-        }
+    function mousemove() {
+		return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");}
 })
 </script>
 
