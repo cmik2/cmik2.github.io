@@ -98,12 +98,18 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
         .style("fill", "none")                             // **********
         .style("stroke", "blue")                           // **********
         .attr("r", 4)                                     // **********
-        .on("mouseover", function(d){
-        .on("mouseover", function() { focus.style("display", null); })
+	.on("mouseover", function(d){
+            tooltip.text("some text");
+            tooltip.append("img")
+                    .attr("src","https://github.com/favicon.ico")
+                    .attr("x", -8)
+                    .attr("y", -8)
+                    .attr("width","16px")                  
+                    .attr("height","12px"); 
+            tooltip.style("visibility", "visible");
         })
-        .on("mousemove", function(){return tooltip.style("top", (event.pageY- 10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
-    
+        .on("mousemove", function(){return tooltip.style("top", (event.pageY-                   10)+"px").style("left",(event.pageX+10)+"px");})
+	 .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
     // append the rectangle to capture mouse               // **********
     svg.append("rect")                                     // **********
         .attr("width", width)                              // **********
