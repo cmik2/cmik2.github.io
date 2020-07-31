@@ -105,7 +105,16 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
         .attr("height", height)                            // **********
         .style("fill", "none")                             // **********
         .style("pointer-events", "all")                    // **********
-        .on("mouseover", function() { focus.style("display", null); })
+        .on("mouseover", function(d) {
+            tooltip.text("some text");
+            tooltip.append("img")
+                    .attr("src","https://github.com/favicon.ico")
+                    .attr("x", -8)
+                    .attr("y", -8)
+                    .attr("width","16px")                  
+                    .attr("height","12px"); 
+            tooltip.style("visibility", "visible");
+        })
         .on("mouseout", function() { focus.style("display", "none"); })
         .on("mousemove", mousemove);                       // **********
 
