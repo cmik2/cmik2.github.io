@@ -96,14 +96,13 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
         .attr("class", "data-circle")
         .attr("r", 5)
         .attr("cx", function(d,i) { if (i==0) {
-               tooltip.text(d.event);
-               tooltip.text("");
                tooltip.append("img")
                     .attr("src",d.photo)
                     .attr("x", -8)
                     .attr("y", -8)
                     .attr("width","100px")
                     .attr("height","80x");
+               tooltip.text(d.event);
                tooltip.style("top", 410 + "px");
                tooltip.style("left", 70 + "px");
                tooltip.style("visibility", "visible");
@@ -112,14 +111,13 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
          )
         .attr("cy", function(d) { return y(d.value); })
         .on("mouseover", function(d){
-            tooltip.text(d.event);
-            tooltip.text("");
             tooltip.append("img")
                     .attr("src",d.photo)
                     .attr("x", -8)
                     .attr("y", -8)
                     .attr("width","100px")                  
                     .attr("height","80x"); 
+            tooltip.text(d.event);
             tooltip.style("visibility", "visible");
         })
         .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
