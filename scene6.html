@@ -59,7 +59,7 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
 
   // When reading the csv, I must format variables:
   function(d){
-    return { value : d.value, year : d.year, event : d.event }
+    return { value : +d.value, year : d.year, event : d.event }
   },
 
   // Now I can use this dataset:
