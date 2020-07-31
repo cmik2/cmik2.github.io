@@ -31,7 +31,7 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
-events = d3.csv("https://cmik2.github.io/starbucks-timeline.csv", function(d) {
+events = d3.csv("https://cmik2.github.io/starbucks_timeline.csv", function(d) {
   return {
     event_year : d.year,
     events : d.event
