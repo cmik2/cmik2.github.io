@@ -108,7 +108,7 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
         .attr("class", "data-circle")
         .attr("r", 5)
         .attr("cx", function(d,i) {
-		if (i===0)) {
+		if (i===0) {
                    tooltip.text(d.year + ":" + d.event)
                    tooltip.append("img")
                     .attr("src",d.photo)
