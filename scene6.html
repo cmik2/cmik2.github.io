@@ -19,8 +19,8 @@
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 1400 - margin.left - margin.right,
+var margin = {top: 10, right: 10, bottom: 30, left: 60},
+    width = 1200 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -103,7 +103,7 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
                     .attr("src","https://cmik2.github.io/1912-pike-store-02-1.jpg")
                     .attr("x", -8)
                     .attr("y", -8)
-                    .attr("width","80px")                  
+                    .attr("width","300px")                  
                     .attr("height","60x"); 
             tooltip.style("visibility", "visible");
         })
