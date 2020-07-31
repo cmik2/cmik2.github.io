@@ -42,6 +42,18 @@ var bisectDate = d3.bisector(function(d) { return d.year; }).left;
 var focus = svg.append("g")
     .style("display", "none"); 
 
+var tooltip = d3.select("body")
+			.append("div")
+			.style("position", "absolute")
+			.style("z-index", "10")
+			.style("width","60px")                  
+			.style("height","28px")                 
+			.style("padding","2px")             
+			.style("font","12px sans-serif")
+			.style("border","0px")      
+			.style("border-radius","8px")  
+			.style("background", "lightsteelblue")
+			.style("visibility", "hidden");
 //Read the data
 d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
 
@@ -85,19 +97,18 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
         .attr("r", 5)
         .attr("cx", function(d) { return x(d.year); })
         .attr("cy", function(d) { return y(d.revenue); });
-
-    var tooltip = d3.select("body")
-			.append("div")
-			.style("position", "absolute")
-			.style("z-index", "10")
-			.style("width","60px")                  
-			.style("height","28px")                 
-			.style("padding","2px")             
-			.style("font","12px sans-serif")
-			.style("border","0px")      
-			.style("border-radius","8px")  
-			.style("background", "lightsteelblue")
-			.style("visibility", "hidden");
+        .on("mouseover", function(d){
+            tooltip.text("some text");
+            tooltip.append("img")
+                    .attr("src","https://github.com/favicon.ico")
+                    .attr("x", -8)
+                    .attr("y", -8)
+                    .attr("width","16px")                  
+                    .attr("height","12px"); 
+            tooltip.style("visibility", "visible");
+        })
+        .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
   }
 )
 </script>
