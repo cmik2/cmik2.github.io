@@ -31,15 +31,14 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
-events = d3.csv("https://cmik2.github.io/starbucks_timeline.csv", function(d) {
-  return {
-    event_year : d.year,
-    events : d.event
-  };
-}).then(function(data1) {
-  console.log(data1[0]);
-});
-console.log(events);
+var events = d3.csv("https://cmik2.github.io/starbucks_timeline.csv",cnvrt, function(d) {
+console.log(d);
+  });
+function cnvrt(d){
+    return d;
+}
+
+
 //Read the data
 d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
 
