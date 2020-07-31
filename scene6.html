@@ -54,6 +54,18 @@ var tooltip = d3.select("body")
 			.style("border-radius","8px")  
 			.style("background", "lightsteelblue")
 			.style("visibility", "hidden");
+var tooltip2 = d3.select("body")
+			.append("div")
+			.style("position", "absolute")
+			.style("z-index", "10")
+			.style("width","350px")                  
+			.style("height","200px")                 
+			.style("padding","2px")             
+			.style("font","12px sans-serif")
+			.style("border","0px")      
+			.style("border-radius","8px")  
+			.style("background", "lightsteelblue")
+			.style("visibility", "hidden");
 //Read the data
 d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
 
@@ -95,9 +107,10 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
     	.enter().append("circle")
         .attr("class", "data-circle")
         .attr("r", 5)
-        .attr("cx", function(d,i) { if (i===0 || i===(data.length - 1)) {
-               tooltip.text(d.year + ":" + d.event)
-               tooltip.append("img")
+        .attr("cx", function(d,i) {
+		if (i===0 || i===(data.length - 1)) {
+                   tooltip.text(d.year + ":" + d.event)
+                   tooltip.append("img")
                     .attr("src",d.photo)
                     .attr("x", -8)
                     .attr("y", -8)
@@ -105,17 +118,24 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
                     .attr("height","180x")
                     .attr("left",0)
                     .attr("bottom",0);
-	       if (i === 0) {
                    tooltip.style("top", 210 + "px");
                    tooltip.style("left", 70 + "px");
+                   tooltip.style("visibility", "visible");
 		}
-		else
-		{
-                   tooltip.style("top", 90 + "px");
-                   tooltip.style("left", 70 + data.length * 10 + "px");
+		else if (i ===(data.length -1)) {
+                   tooltip2.text(d.year + ":" + d.event)
+                   tooltip2.append("img")
+                    .attr("src",d.photo)
+                    .attr("x", -8)
+                    .attr("y", -8)
+                    .attr("width","200px")
+                    .attr("height","180x")
+                    .attr("left",0)
+                    .attr("bottom",0);
+                   tooltip2.style("top", 90 + "px");
+                   tooltip2.style("left", 70 + data.length * 10 + "px");
+                   tooltip2.style("visibility", "visible");
                 };
-               tooltip.style("visibility", "visible");
-              };
              return x(d.year); }
          )
         .attr("cy", function(d) { return y(d.value); })
@@ -132,7 +152,7 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
             tooltip.style("visibility", "visible");
         })
         .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+        .on("mouseout", function(){tooltip2.style("visibility", "hidden"); return tooltip.style("visibility", "hidden");});
   }
 )
 </script>
