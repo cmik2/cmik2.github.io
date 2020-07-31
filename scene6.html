@@ -38,45 +38,6 @@ function cnvrt(d){
     return d;
 }
 
-var tooltip = d3.select("body")
-.append("div")
-.style("position", "absolute")
-.style("z-index", "10")
-    .style("width","60px")                  
-    .style("height","28px")                 
-    .style("padding","2px")             
-    .style("font","12px sans-serif")
-    .style("border","0px")      
-    .style("border-radius","8px")  
-    .style("background", "lightsteelblue")
-.style("visibility", "hidden");
-
-
-    //the svg container
-    var svg = d3.select("body").append("svg")
-        .attr("width", 500)
-        .attr("height", 500);
-
-    //the node        
-    svg.append("circle")
-        .attr("class", "logo")
-        .attr("cx", 225)
-        .attr("cy", 225)
-        .attr("r", 20)
-        .on("mouseover", function(d){
-            tooltip.text("some text");
-            tooltip.append("img")
-                    .attr("src","https://github.com/favicon.ico")
-                    .attr("x", -8)
-                    .attr("y", -8)
-                    .attr("width","16px")                  
-                    .attr("height","12px"); 
-            tooltip.style("visibility", "visible");
-        })
-        .on("mousemove", function(){return tooltip.style("top", (event.pageY-                   
-                                      10)+"px").style("left",(event.pageX+10)+"px");})
-        .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
-
 //Read the data
 d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
 
@@ -112,6 +73,43 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
         .x(function(d) { return x(d.year) })
         .y(function(d) { return y(d.revenue) })
         )
+
+var tooltip = d3.select("body")
+.append("div")
+.style("position", "absolute")
+.style("z-index", "10")
+    .style("width","60px")                  
+    .style("height","28px")                 
+    .style("padding","2px")             
+    .style("font","12px sans-serif")
+    .style("border","0px")      
+    .style("border-radius","8px")  
+    .style("background", "lightsteelblue")
+.style("visibility", "hidden");
+
+        var focus = svg.append("g")
+            .attr("class", "focus")
+            .style("display", "none");
+
+        focus.append("circle")
+            .attr("r", 5);
+            .attr("class", "logo")
+            .attr("cx", 225)
+            .attr("cy", 225)
+            .attr("r", 20)
+            .on("mouseover", function(d){
+                tooltip.text("some text");
+                tooltip.append("img")
+                    .attr("src","https://github.com/favicon.ico")
+                    .attr("x", -8)
+                    .attr("y", -8)
+                    .attr("width","16px")                  
+                    .attr("height","12px"); 
+            	tooltip.style("visibility", "visible");
+        })
+        .on("mousemove", function(){return tooltip.style("top", (event.pageY-                   
+                                      10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
 })
 </script>
