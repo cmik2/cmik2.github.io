@@ -59,7 +59,7 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
 
   // When reading the csv, I must format variables:
   function(d){
-    return { value : +d.value, year : d.year, event : d.event }
+    return { photo : d.photo, value : +d.value, year : d.year, event : d.event }
   },
 
   // Now I can use this dataset:
@@ -100,11 +100,11 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
         .on("mouseover", function(d){
             tooltip.text(d.event);
             tooltip.append("img")
-                    .attr("src","https://cmik2.github.io/1912-pike-store-02-1.jpg")
+                    .attr("src",d.photo)
                     .attr("x", -8)
                     .attr("y", -8)
-                    .attr("width","300px")                  
-                    .attr("height","60x"); 
+                    .attr("width","100px")                  
+                    .attr("height","80x"); 
             tooltip.style("visibility", "visible");
         })
         .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
