@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 690 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Parse the Data
+d3.csv("https://cmik2.github.io/starbucks_timeline.csv", function(data) {
+
+var testData = [
+	{label: "person a", times: [
+		{"starting_time": 1355752800000, "ending_time": 1355759900000},
+		{"starting_time": 1355767900000, "ending_time": 1355774400000}]},
+	{label: "person b", times: [
+		{"starting_time": 1355759910000, "ending_time": 1355761900000}]},
+	{label: "person c", times: [
+		{"starting_time": 1355761910000, "ending_time": 1355763910000}]}
+	];
+var chart = d3.timelines();
+
+var svg = d3.select("#timeline1").append("svg").attr("width", 500)
+	.datum(testData).call(chart);
+})
+
+</script>
+
+<div>
+  <h3>I am div 3</h3>
+</div>
+<div>
+  <h3>I am div 4</h3>
+</div>
+}
+</body>
+</html>
