@@ -78,7 +78,7 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
         .y(function(d) { return y(d.revenue) })
         );
 
-    lineAndDots.selectAll("line-circle")
+    svg.append("g").selectAll("line-circle")
     		.data(data)
     	.enter().append("circle")
         .attr("class", "data-circle")
