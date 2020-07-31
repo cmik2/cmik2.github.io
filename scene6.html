@@ -95,7 +95,7 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
     	.enter().append("circle")
         .attr("class", "data-circle")
         .attr("r", 5)
-        .attr("cx", function(d,i) { if (i==0) {
+        .attr("cx", function(d,i) { if (i==0 || i==(d.length - 1)) {
                tooltip.text(d.year + ":" + d.event)
                tooltip.append("img")
                     .attr("src",d.photo)
@@ -105,8 +105,15 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
                     .attr("height","180x")
                     .attr("left",0)
                     .attr("bottom",0);
-               tooltip.style("top", 310 + "px");
+	       if (i == 0) {
+               tooltip.style("top", 110 + "px");
                tooltip.style("left", 70 + "px");
+		}
+		else
+		{
+               tooltip.style("top", 90 + "px");
+               tooltip.style("left", 70*d.length + "px");
+               };
                tooltip.style("visibility", "visible");
               };
              return x(d.year); }
