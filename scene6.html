@@ -103,8 +103,8 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
                     .attr("y", -8)
                     .attr("width","100px")
                     .attr("height","80x");
-               tooltip.style("top", 300 + "px");
-               tooltip.style("left", 60 + "px");
+               tooltip.style("top", y.ticks(). + "px");
+               tooltip.style("left", x.ticks() + "px");
                tooltip.style("visibility", "visible");
               };
              return x(d.year); }
@@ -120,7 +120,7 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
                     .attr("height","80x"); 
             tooltip.style("visibility", "visible");
         })
-        .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");consol.log(event.pageY-10); consol.log(even.pageX-10);})
+        .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
         .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
   }
 )
