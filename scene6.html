@@ -106,14 +106,14 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
                     .attr("left",0)
                     .attr("bottom",0);
 	       if (i === 0) {
-               tooltip.style("top", 110 + "px");
-               tooltip.style("left", 70 + "px");
+                   tooltip.style("top", 210 + "px");
+                   tooltip.style("left", 70 + "px");
 		}
 		else
 		{
-               tooltip.style("top", 90 + "px");
-               tooltip.style("left", 200 + "px");
-               };
+                   tooltip.style("top", 90 + "px");
+                   tooltip.style("left", 70 + data.length * 10 + "px");
+                };
                tooltip.style("visibility", "visible");
               };
              return x(d.year); }
