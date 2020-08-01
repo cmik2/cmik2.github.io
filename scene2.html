@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html>
-<div>
-<a href="http://cmik2.github.io/index.html" rel="back">Back</a>
-<a href="http://cmik2.github.io/scene3.html" rel="next">Nextk</a>
-<a href="http://cmik2.github.io/scene4.html" rel="last">Last</a>
-</div>
 
 <!-- Load d3.js -->
 <!-- script src="https://d3js.org/d3.v5.min.js"></script ---->
 <script src="https://d3js.org/d3.v4.js"></script>
+
+<svg height="100" width="1240">
+    <image href="https://cmik2.github.io/starbuckslogo.png" height="100" width="100"/>
+    <text x="100" y="60" font-family="sans-serif" font-size="35px">
+    How Starbucks become an international coffee company
+    </text>
+</svg>
+<div style="width:600px;">
+<h3>
+Nowadays, you will find Starbucks in almost every country!
+How does a small coffee shop in Seattle became such a world-reknown monolithic.
+Let's see how Starbucks became what it is now.
+</h3>
+</div>
+<div>
+<h3>
+<a href="http://cmik2.github.io/index.html" rel="back">Back</a>
+<a href="http://cmik2.github.io/scene3.html" rel="next">Nextk</a>
+<a href="http://cmik2.github.io/scene4.html" rel="last">Last</a>
+<h3>
+</div>
+
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 690 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+var margin = {top: 10, right: 10, bottom: 30, left: 60},
+    width = 1240 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -27,6 +44,12 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+svg.append("rect")
+    .attr("x",0)
+    .attr("y",0)
+    .attr("height", height)
+    .attr("width", width)
+    .style("fill", "EBEBEB")
 
 //Read the data
 d3.csv("https://cmik2.github.io/number-of-starbucks.csv",
