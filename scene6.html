@@ -50,7 +50,7 @@ var bisectDate = d3.bisector(function(d) { return d.year; }).left;
 
 var tooltip = d3.select("body")
 			.append("div")
-			.style("position", "relative")
+			.style("position", "absolute")
 			.style("z-index", "10")
 			.style("width","350px")                  
 			.style("height","200px")                 
@@ -62,7 +62,7 @@ var tooltip = d3.select("body")
 			.style("visibility", "hidden");
 var tooltip2 = d3.select("body")
 			.append("div2")
-			.style("position", "relative")
+			.style("position", "absolute")
 			.style("z-index", "10")
 			.style("width","350px")                  
 			.style("height","200px")                 
