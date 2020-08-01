@@ -51,6 +51,21 @@ svg.append("rect")
     .attr("width", width)
     .style("fill", "EBEBEB")
 
+var bisectDate = d3.bisector(function(d) { return d.year; }).left;
+
+var tooltip = d3.select("body")
+                        .append("div")
+                        .style("position", "absolute")
+                        .style("z-index", "10")
+                        .style("width","350px")
+                        .style("height","200px")
+                        .style("padding","2px")
+                        .style("font","12px sans-serif")
+                        .style("border","0px")
+                        .style("border-radius","8px")
+                        .style("background", "lightsteelblue")
+                        .style("visibility", "hidden");
+
 //Read the data
 d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
 
@@ -93,7 +108,32 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
       .attr("d", d3.line()
         .x(function(d) { return x(d.year) })
         .y(function(d) { return y(d.revenue) })
-        )
+        );
+ svg.append("g").selectAll("line-circle")
+                .data(data)
+        .enter().append("circle")
+        .attr("class", "data-circle")
+        .attr("r", 8)
+        .style("fill", function(d,i) {
+                if (i===0 || i === (data.length -1)) {
+                return "red";}
+                else {return "steelblue";}
+         })
+        .attr("cx", function(d,i) { return x(d.year); }
+)
+        .attr("cy", function(d) { return y(d.value); })
+        .on("mouseover", function(d){
+            tooltip.text(d.year + ":" + d.revenue)
+            }
+            tooltip.style("visibility", "visible");
+        })
+        .on("mousemove", function(d,i){
+                if (i>data.length/2) {
+                   return tooltip.style("top", (event.pageY-10)+"px").style("right",(event.pageX+10)+"px");}
+                else {
+                   return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");};
+})
+        .on("mouseout", function(){tooltip2.style("visibility", "hidden"); return tooltip.style("visibility", "hidden");});
 
  }
 )
