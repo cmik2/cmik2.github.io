@@ -162,7 +162,12 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
             }
             tooltip.style("visibility", "visible");
         })
-        .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mousemove", function(d,i){
+		if (i>data.length/2) {
+			return tooltip.style("top", (event.pageY-10)+"px").style("right",(event.pageX+10)+"px");}
+	        else {
+                        return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");};
+        )
         .on("mouseout", function(){tooltip2.style("visibility", "hidden"); return tooltip.style("visibility", "hidden");});
   }
 )
