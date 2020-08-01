@@ -186,6 +186,7 @@ d3.csv("https://cmik2.github.io/datasets/starbucks_timeline.csv",
                     .attr("height","180x"); 
             }
             tooltip.style("visibility", "visible");
+            tooltip2.style("visibility", "hidden");
         })
         .on("mousemove", function(d,i){
 		if (i>data.length/2) {
