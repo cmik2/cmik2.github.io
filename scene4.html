@@ -17,7 +17,9 @@ Top countries with the large number of Starbucks!
 </div>
 <div>
 <h3>
-<a href="https://cmik2.github.io/scene2.html" rel="prev">Previous</a>
+<a href="https://cmik2.github.io/scene2.html" rel="Top">Top Page</a>
+
+<a href="https://cmik2.github.io/scene2.html" rel="prev">Previous Page</a>
 <h3>
 </div>
 
@@ -63,14 +65,16 @@ d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) 
 
   // create a tooltip
   var Tooltip = d3.select("#my_dataviz")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
+                        .style("position", "absolute")
+                        .style("z-index", "10")
+                        .style("width","350px")
+                        .style("height","200px")
+                        .style("padding","2px")
+                        .style("font","12px sans-serif")
+                        .style("border","0px")
+                        .style("border-radius","8px")
+                        .style("background", "lightsteelblue")
+                        .style("visibility", "hidden");
 
   // Three function that change the tooltip when user hover / move / leave a cell
   var mouseover = function(d) {
