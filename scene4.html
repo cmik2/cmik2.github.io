@@ -53,9 +53,6 @@ svg.append("rect")
 // Read data
 d3.csv("https://cmik2.github.io/stores_by_country.csv", function(data) {
 
-  // Filter a bit the data -> more than 1 million inhabitants
-  data = data.filter(function(d){ return d.value>10000000 })
-
   // Color palette for continents?
   var color = d3.scaleOrdinal()
     .domain(["Asia", "Europe", "Africa", "Oceania", "Americas"])
