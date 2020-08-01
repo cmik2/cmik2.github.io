@@ -13,8 +13,10 @@ How Starbucks became an international coffee giant
 </svg>
 
 <div>
-<a href="https://cmik2.github.io/index.html"><button>Previous Page</button></a>
-<a href="https://cmik2.github.io/scene3.html"><button>Next Page</button></a>
+<a href="https://cmik2.github.io/index.html"><button> 1 </button></a>
+<a href="https://cmik2.github.io/scene2.html"><button style="background-color: blue;"> 2 </button></a>
+<a href="https://cmik2.github.io/scene3.html"><button> 3 </button></a>
+<a href="https://cmik2.github.io/scene4.html"><button> 4 </button></a>
 </div>
 
 <div style="width:600px;">
@@ -84,12 +86,22 @@ d3.csv("https://cmik2.github.io/datasets/revenue-of-starbucks-wld.csv",
    svg.append("g")
      .attr("transform", "translate(0," + height + ")")
      .call(d3.axisBottom(x).ticks(data.length).tickFormat(d3.format("d")))
+
+   // text label for the X axis
+    svg.append("text")
+      .attr("transform",
+            "translate(" + (width/2) + " ," +
+                           (height + margin.top + 20) + ")")
+      .style("text-anchor", "middle")
+      .text("Year");
+
     // Add Y axis
     var y = d3.scaleLinear()
       .domain([0, d3.max(data, function(d) { return +d.revenue; })])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
+
    // text label for the y axis
     svg.append("text")
       .attr("transform", "rotate(-90)")
