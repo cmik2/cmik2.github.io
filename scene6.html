@@ -106,11 +106,7 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
     		.data(data)
     	.enter().append("circle")
         .attr("class", "data-circle")
-        .attr("r", function(d, i) { 
-         	if (i===0 || i === (data.length -1)) {
-			return 12;}
-		else {return 8;}
-        })
+        .attr("r", 8)
         .style("fill", function(d,i) {
          	if (i===0 || i === (data.length -1)) {
 		return "red";}
@@ -127,7 +123,7 @@ d3.csv("https://cmik2.github.io/starbucks_timeline.csv",
                     .attr("height","180x")
                     .attr("left",0)
                     .attr("bottom",0);
-                   tooltip.style("top", 210 + "px");
+                   tooltip.style("top", 310 + "px");
                    tooltip.style("left", 70 + "px");
                    tooltip.style("visibility", "visible");
 		}
