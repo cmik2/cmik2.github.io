@@ -26,6 +26,9 @@ Top countries with the large number of Starbucks!
 <!-- Create a div where the graph will take place -->
 
 <div id="my_dataviz"></div>
+<div>
+  <svg id="my_legends" height=300 width=450></svg>
+</div>
 
 <script>
 
@@ -49,9 +52,6 @@ svg.append("rect")
     .attr("width", width)
     .style("fill", "EBEBEB");
 
-<div>
-  <svg id="my_legends" height=300 width=450></svg>
-</div>
 var svg = d3.select("#my_legends")
 svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "red")
 svg.append("circle").attr("cx",230).attr("cy",130).attr("r", 6).style("fill", "blue")
