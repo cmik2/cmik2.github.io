@@ -12,9 +12,7 @@
 </svg>
 <div style="width:600px;">
 <h3>
-Nowadays, you will find Starbucks in almost every country!
-How does a small coffee shop in Seattle became such a world-reknown monolithic.
-Let's see how Starbucks became what it is now.
+Top countries with the large number of Starbucks!
 </h3>
 </div>
 <div>
@@ -25,6 +23,21 @@ Let's see how Starbucks became what it is now.
 
 
 <!-- Create a div where the graph will take place -->
+<div id="my_text"></div>
+var svg = d3.select("#my_text")
+  .append("svg")
+    .attr("width",500)
+    .attr("height",200)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+svg.append("rect")
+    .attr("x",0)
+    .attr("y",0)
+    .attr("height", height)
+    .attr("width", width)
+    .style("fill", "pink")
+
 <div id="my_dataviz"></div>
 
 <script>
