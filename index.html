@@ -95,6 +95,9 @@ d3.csv("https://cmik2.github.io/datasets/starbucks_timeline.csv",
      .call(d3.axisBottom(x).ticks(data.length).tickFormat(d3.format("d")))
    // text label for the y axis
     svg.append("text")
+      .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + margin.top + 20) + ")")
       .attr("y", 0 - margin.left)
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
