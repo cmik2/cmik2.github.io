@@ -51,7 +51,7 @@ svg.append("rect")
 
 
 // Read data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/11_SevCatOneNumNestedOneObsPerGroup.csv", function(data) {
+d3.csv("https://cmik2.github.io/stores_by_country.csv", function(data) {
 
   // Filter a bit the data -> more than 1 million inhabitants
   data = data.filter(function(d){ return d.value>10000000 })
@@ -63,7 +63,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // Size scale for countries
   var size = d3.scaleLinear()
-    .domain([0, 1400000000])
+    .domain([0, 15000])
     .range([7,55])  // circle will be between 7 and 55 px wide
 
   // create a tooltip
@@ -84,7 +84,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
   }
   var mousemove = function(d) {
     Tooltip
-      .html('<u>' + d.key + '</u>' + "<br>" + d.value + " inhabitants")
+      .html('<u>' + d.key + '</u>' + "<br>" + d.value + " stores")
       .style("left", (d3.mouse(this)[0]+20) + "px")
       .style("top", (d3.mouse(this)[1]) + "px")
   }
