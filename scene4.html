@@ -49,16 +49,6 @@ svg.append("rect")
     .attr("width", width)
     .style("fill", "EBEBEB")
 
-// select the svg area
-//var svg = d3.select("#my_dataviz")
-// Handmade legend
-//svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "red")
-//svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "blue")
-//svg.append("circle").attr("cx",200).attr("cy",190).attr("r", 6).style("fill", "steelblue")
-//svg.append("text").attr("x", 220).attr("y", 130).text("Asia").style("font-size", "15px").attr("alignment-baseline","middle")
-//svg.append("text").attr("x", 220).attr("y", 160).text("Americas").style("font-size", "15px").attr("alignment-baseline","middle")
-//svg.append("text").attr("x", 220).attr("y", 190).text("Europe").style("font-size", "15px").attr("alignment-baseline","middle")
-
 
 // Read data
 d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) {
@@ -75,16 +65,14 @@ d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) 
 
   // create a tooltip
   var Tooltip = d3.select("#my_dataviz")
-                        .style("position", "absolute")
-                        .style("z-index", "10")
-                        .style("width","350px")
-                        .style("height","200px")
-                        .style("padding","2px")
-                        .style("font","12px sans-serif")
-                        .style("border","0px")
-                        .style("border-radius","8px")
-                        .style("background", "lightsteelblue")
-                        .style("visibility", "hidden");
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "5px")
 
   // Three function that change the tooltip when user hover / move / leave a cell
   var mouseover = function(d) {
