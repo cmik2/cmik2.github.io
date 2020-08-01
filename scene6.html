@@ -18,10 +18,6 @@
 
 <script>
 
-var logo_image = svg.append('image')
-    .attr('xlink:href', 'http://cmik2.github.io/starbuckslogo.png')
-    .attr('width', 200)
-    .attr('height', 200)
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 30, left: 60},
     width = 1240 - margin.left - margin.right,
@@ -42,6 +38,10 @@ svg.append("rect")
     .attr("width", width)
     .style("fill", "EBEBEB")
 
+var logo_image = svg.append('image')
+    .attr('xlink:href', 'http://cmik2.github.io/starbuckslogo.png')
+    .attr('width', 200)
+    .attr('height', 200)
 
 var bisectDate = d3.bisector(function(d) { return d.year; }).left;
 
