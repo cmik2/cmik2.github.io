@@ -10,17 +10,16 @@
 How Starbucks became an international coffee giant
     </text>
 </svg>
+<div>
+<h2>
+<a href="https://cmik2.github.io/scene2.html" class="button" rel="Top">Top Page</a>
+<a href="https://cmik2.github.io/scene2.html"  class="button" rel="prev">Previous Page</a>
+<h2>
+</div>
 <div style="width:600px;">
 <h3>
 Top countries with the large number of Starbucks!
 </h3>
-</div>
-<div>
-<h3>
-<a href="https://cmik2.github.io/scene2.html" rel="Top">Top Page</a>
-
-<a href="https://cmik2.github.io/scene2.html" rel="prev">Previous Page</a>
-<h3>
 </div>
 
 <!-- Create a div where the graph will take place -->
@@ -74,7 +73,7 @@ d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) 
     .range([7,55])  // circle will be between 7 and 55 px wide
 
   // create a tooltip
-  var Tooltip = d3.select("#my_dataviz")
+  var tooltip = d3.select("#my_dataviz")
     .append("div")
     .style("position", "absolute")
     .style("opacity", 0)
@@ -91,17 +90,17 @@ d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) 
 
   // Three function that change the tooltip when user hover / move / leave a cell
   var mouseover = function(d) {
-    Tooltip
+    tooltip
       .style("opacity", 1)
   }
   var mousemove = function(d) {
-    Tooltip
+    tooltip
       .html('<u>' + d.key + '</u>' + "<br>" + d.value + " stores")
       .style("left", (d3.mouse(this)[0]+20) + "px")
       .style("top", (d3.mouse(this)[1]) + "px")
   }
   var mouseleave = function(d) {
-    Tooltip
+    tooltip
       .style("opacity", 0)
   }
 
