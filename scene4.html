@@ -97,7 +97,7 @@ d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) 
   var mousemove = function(d) {
     tooltip
       .html('<u>' + d.key + '</u>' + "<br>" + d.value + " stores")
-      .style("left", (d3.mouse(this)[0]+20) + "px")
+      .style("left", (d3.mouse(this)[0]) + "px")
       .style("top", (d3.mouse(this)[1]) + "px")
   }
   var mouseleave = function(d) {
