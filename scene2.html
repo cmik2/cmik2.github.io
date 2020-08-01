@@ -124,7 +124,6 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
         .attr("cy", function(d) { return y(d.value); })
         .on("mouseover", function(d){
             tooltip.text(d.year + ":" + d.revenue)
-            }
             tooltip.style("visibility", "visible");
         })
         .on("mousemove", function(d,i){
