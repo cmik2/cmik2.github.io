@@ -59,7 +59,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
   // Color palette for continents?
   var color = d3.scaleOrdinal()
     .domain(["Asia", "Europe", "Africa", "Oceania", "Americas"])
-    .range(d3.schemeSet1);
+    .range(["red","blue","steelblue","orange","pink"]);
 
   // Size scale for countries
   var size = d3.scaleLinear()
