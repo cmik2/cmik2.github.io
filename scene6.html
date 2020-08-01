@@ -31,16 +31,8 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
-var events = d3.csv("https://cmik2.github.io/starbucks_timeline.csv",cnvrt, function(d) {
-console.log(d);
-  });
-function cnvrt(d){
-    return d;
-}
 
 var bisectDate = d3.bisector(function(d) { return d.year; }).left;
-var focus = svg.append("g")
-    .style("display", "none"); 
 
 var tooltip = d3.select("body")
 			.append("div")
