@@ -21,6 +21,48 @@ See the world's top countries in the number of Starbucks!
 <h3>
 Can you guess which country is the largest bubble? Click the bubble to find it out!
 </h3>
+<h3>
+Notice that there are many red bubbles? A lot of Starbucks are popping up in Asia!
+</h3>
+</div>
+
+<!-- Create a div where the graph will take place -->
+
+<div id="my_dataviz"></div>
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 460 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+svg.append("rect")
+    .attr("x",0)
+    .attr("y",0)
+    .attr("height", height)
+    .attr("width", width)
+    .style("fill", "EBEBEB")
+var legend = svg.append("g")
+  .attr("class","legend")
+  .attr("transform","translate(50,30)")
+  .style("font-size","8px")
+
+legend.append("circle").attr("cx",10).attr("cy",5).attr("r", 6).style("fill", "blue")
+legend.append("circle").attr("cx",110).attr("cy",5).attr("r", 6).style("fill", "red")
+legend.append("circle").attr("cx",210).attr("cy",5).attr("r", 6).style("fill", "steelblue")
+legend.append("text").attr("x", 20).attr("y", 5).text("Americas").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 120).attr("y", 5).text("Asia").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 220).attr("y", 5).text("Europe").style("font-size", "15px").attr("alignment-baseline","middle")
+
 </div>
 
 <!-- Create a div where the graph will take place -->
