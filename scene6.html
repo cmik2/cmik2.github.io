@@ -13,6 +13,22 @@
 <!-- script src="https://d3js.org/d3.v5.min.js"></script ---->
 <script src="https://d3js.org/d3.v4.js"></script>
 
+<div id="my_text"></div>
+var svg = d3.select("#my_text")
+var margin = {top: 0, right: 10, bottom: 10, left: 10},
+    width = 1240 - margin.left - margin.right,
+    height = 100 - margin.top - margin.bottom;
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+var logo_image = svg.append('image')
+    .attr('xlink:href', 'http://cmik2.github.io/starbuckslogo.png')
+    .attr('width', 200)
+    .attr('height', 200)
+
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 
@@ -38,10 +54,6 @@ svg.append("rect")
     .attr("width", width)
     .style("fill", "EBEBEB")
 
-var logo_image = svg.append('image')
-    .attr('xlink:href', 'http://cmik2.github.io/starbuckslogo.png')
-    .attr('width', 200)
-    .attr('height', 200)
 
 var bisectDate = d3.bisector(function(d) { return d.year; }).left;
 
