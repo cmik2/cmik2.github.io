@@ -1,28 +1,109 @@
 <!DOCTYPE html>
 <html>
-<div>
-<a href="http://cmik2.github.io/scene2.html" rel="back">Back</a>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<svg height="100" width="1240">
+    <image href="https://cmik2.github.io/starbuckslogo.png" height="100" width="100"/>
+    <text x="100" y="60" font-family="sans-serif" font-size="35px">
+    How Starbucks become an international coffee company
+    </text>
+</svg>
+<div style="width:600px;">
+<h3>
+Nowadays, you will find Starbucks in almost every country!
+How does a small coffee shop in Seattle became such a world-reknown monolithic.
+Let's see how Starbucks became what it is now.
+</h3>
 </div>
-<script src="https://d3js.org/d3.v5.min.js"></script>
-  <script>
-    var container = document.currentScript.parentNode;
-    var svg = d3.select(container)
-      .append("svg");
-    var data = d3.range(10).map(d => Math.random() * 150);
-    var scale = d3.scaleBand()
-      .domain(data)
-      .range([0, 300])
-      .padding(0.4);
-    var bars = svg.selectAll(null)
-      .data(data)
-      .enter()
-      .append("rect")
-      .style("fill", "steelblue")
-      .attr("x", d => scale(d))
-      .attr("width", scale.bandwidth())
-      .attr("height", d => 150 - d)
-      .attr("y", Number)
-  </script>
+<div>
+<h3>
+<a href="https://cmik2.github.io/scene2.html" rel="next">Next, let's see the revenue growth!</a>
+<h3>
+</div>
+
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 690 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+svg.append("rect")
+    .attr("x",0)
+    .attr("y",0)
+    .attr("height", height)
+    .attr("width", width)
+    .style("fill", "EBEBEB")
+
+// Parse the Data
+d3.csv("https://cmik2.github.io/number-of-starbucks.csv", function(data) {
+
+  // List of subgroups = header of the csv files =  store type here
+
+  var subgroups = data.columns.slice(1)
+
+  // List of year here = value of the first column called group -> I show them on the X axis
+  var groups = d3.map(data, function(d){return(d.year)}).keys()
+
+  // Add X axis
+  var x = d3.scaleBand()
+      .domain(groups)
+      .range([0, width])
+      .padding([0.2])
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickSizeOuter(0));
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, 15000])
+    .range([ height, 0 ]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
+
+  // color palette = one color per subgroup
+  var color = d3.scaleOrdinal()
+    .domain(subgroups)
+    .range(['#e41a1c','#377eb8'])
+
+  //stack the data? --> stack per subgroup
+  var stackedData = d3.stack()
+    .keys(subgroups)
+    (data)
+
+  // Show the bars
+  svg.append("g")
+    .selectAll("g")
+    // Enter in the stack data = loop key per key = group per group
+    .data(stackedData)
+    .enter().append("g")
+      .attr("fill", function(d) { return color(d.key); })
+      .selectAll("rect")
+      // enter a second time = loop subgroup per subgroup to add all rectangles
+      .data(function(d) { return d; })
+      .enter().append("rect")
+        .attr("x", function(d) { return x(d.data.year); })
+        .attr("y", function(d) { return y(d[1]); })
+        .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+        .attr("width",x.bandwidth())
+})
+
+</script>
+
 <div>
   <h3>I am div 3</h3>
 </div>
@@ -30,6 +111,5 @@
   <h3>I am div 4</h3>
 </div>
 }
-</script>
 </body>
 </html>
