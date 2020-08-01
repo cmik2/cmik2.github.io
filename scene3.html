@@ -51,6 +51,21 @@ svg.append("rect")
     .attr("width", width)
     .style("fill", "EBEBEB")
 
+var bisectDate = d3.bisector(function(d) { return d.year; }).left;
+
+var tooltip = d3.select("body")
+                        .append("div")
+                        .style("position", "absolute")
+                        .style("z-index", "10")
+                        .style("width","60px")
+                        .style("height","40px")
+                        .style("padding","2px")
+                        .style("font","12px sans-serif")
+                        .style("border","0px")
+                        .style("border-radius","8px")
+                        .style("background", "lightsteelblue")
+                        .style("visibility", "hidden");
+
 // Parse the Data
 d3.csv("https://cmik2.github.io/datasets/number-of-starbucks.csv", function(data) {
 
