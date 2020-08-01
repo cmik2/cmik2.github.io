@@ -53,10 +53,12 @@ var legend = svg.append("g")
   .attr("transform","translate(50,30)")
   .style("font-size","8px")
 
-legend.append("circle").attr("cx",100).attr("cy",10).attr("r", 6).style("fill", "#69b3a2")
-legend.append("circle").attr("cx",200).attr("cy",10).attr("r", 6).style("fill", "#404080")
-legend.append("text").attr("x", 100).attr("y", 10).text("variable A").style("font-size", "15px").attr("alignment-baseline","middle")
-legend.append("text").attr("x", 200).attr("y", 160).text("variable B").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("circle").attr("cx",10).attr("cy",5).attr("r", 6).style("fill", "blue")
+legend.append("circle").attr("cx",110).attr("cy",5).attr("r", 6).style("fill", "red")
+legend.append("circle").attr("cx",210).attr("cy",5).attr("r", 6).style("fill", "steelblue")
+legend.append("text").attr("x", 10).attr("y", 5).text("Americas").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 110).attr("y", 5).text("Asia").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 210).attr("y", 5).text("Europe").style("font-size", "15px").attr("alignment-baseline","middle")
 
 // Read data
 d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) {
