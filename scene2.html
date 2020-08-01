@@ -119,15 +119,11 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
 )
         .attr("cy", function(d) { return y(d.revenue); })
         .on("mouseover", function(d){
-            tooltip.text(d.year + ":" + d.revenue)
+            tooltip.text("Year:" + d.year + "\n" + d.revenue + " billions")
             tooltip.style("visibility", "visible");
         })
         .on("mousemove", function(d,i){
-                if (i>data.length/2) {
-                   return tooltip.style("top", (event.pageY-10)+"px").style("right",(event.pageX+10)+"px");}
-                else {
-                   return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");};
-})
+                   return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
         .on("mouseout", function(){tooltip2.style("visibility", "hidden"); return tooltip.style("visibility", "hidden");});
 
  }
