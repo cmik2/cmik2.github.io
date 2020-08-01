@@ -10,58 +10,18 @@
 How Starbucks became an international coffee giant
     </text>
 </svg>
-<div>
-<a href="https://cmik2.github.io/index.html"><button>Top Page</button></a>
-<a href="https://cmik2.github.io/scene2.html"><button>Previous Page</button></a>
-</div>
 <div style="width:600px;">
-<h2>
-See the world's top countries in the number of Starbucks!
-</h2>
 <h3>
-Can you guess which country is the largest bubble? Click the bubble to find it out!
-</h3>
-<h3>
-Notice that there are many red bubbles? A lot of Starbucks are popping up in Asia!
+Top countries with the large number of Starbucks!
 </h3>
 </div>
+<div>
+<h3>
+<a href="https://cmik2.github.io/scene2.html" rel="Top">Top Page</a>
 
-<!-- Create a div where the graph will take place -->
-
-<div id="my_dataviz"></div>
-
-<script>
-
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 460 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-svg.append("rect")
-    .attr("x",0)
-    .attr("y",0)
-    .attr("height", height)
-    .attr("width", width)
-    .style("fill", "EBEBEB")
-var legend = svg.append("g")
-  .attr("class","legend")
-  .attr("transform","translate(50,30)")
-  .style("font-size","8px")
-
-legend.append("circle").attr("cx",10).attr("cy",5).attr("r", 6).style("fill", "blue")
-legend.append("circle").attr("cx",110).attr("cy",5).attr("r", 6).style("fill", "red")
-legend.append("circle").attr("cx",210).attr("cy",5).attr("r", 6).style("fill", "steelblue")
-legend.append("text").attr("x", 20).attr("y", 5).text("Americas").style("font-size", "15px").attr("alignment-baseline","middle")
-legend.append("text").attr("x", 120).attr("y", 5).text("Asia").style("font-size", "15px").attr("alignment-baseline","middle")
-legend.append("text").attr("x", 220).attr("y", 5).text("Europe").style("font-size", "15px").attr("alignment-baseline","middle")
+<a href="https://cmik2.github.io/scene2.html" rel="prev">Previous Page</a>
+<h3>
+</div>
 
 <!-- Create a div where the graph will take place -->
 
@@ -114,34 +74,29 @@ d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) 
     .range([7,55])  // circle will be between 7 and 55 px wide
 
   // create a tooltip
-  var tooltip = d3.select("#my_dataviz")
+  var Tooltip = d3.select("#my_dataviz")
     .append("div")
-    .style("position", "absolute")
     .style("opacity", 0)
     .attr("class", "tooltip")
-    .style("z-index", "10")
-    .style("background", "lightsteelblue")
-    .style("border","0px")
+    .style("background-color", "white")
+    .style("border", "solid")
     .style("border-width", "2px")
-    .style("border-radius", "8px")
-    .style("font","12px sans-serif")
-    .style("padding", "2px")
-    .style("width","100px")
-    .style("height","50px")
+    .style("border-radius", "5px")
+    .style("padding", "5px")
 
   // Three function that change the tooltip when user hover / move / leave a cell
   var mouseover = function(d) {
-    tooltip
+    Tooltip
       .style("opacity", 1)
   }
   var mousemove = function(d) {
-    tooltip
+    Tooltip
       .html('<u>' + d.key + '</u>' + "<br>" + d.value + " stores")
-      .style("left", (d3.mouse(this)[0]) + "px")
+      .style("left", (d3.mouse(this)[0]+20) + "px")
       .style("top", (d3.mouse(this)[1]) + "px")
   }
   var mouseleave = function(d) {
-    tooltip
+    Tooltip
       .style("opacity", 0)
   }
 
