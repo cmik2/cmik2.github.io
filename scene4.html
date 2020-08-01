@@ -103,7 +103,7 @@ d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) 
     tooltip
       .html('<u>' + d.key + '</u>' + "<br>" + d.value + " stores")
       .style("left",((d3.mouse(this)[0]) + 50) + "px")
-      .style("top", ((d3.mouse(this)[1]) + 500) + "px")
+      .style("top", ((d3.mouse(this)[1]) + 200) + "px")
   }
   var mouseleave = function(d) {
     tooltip
