@@ -4,31 +4,11 @@
 <!-- script src="https://d3js.org/d3.v5.min.js"></script ---->
 <script src="https://d3js.org/d3.v4.js"></script>
 <svg>
-    <circle cx="20" cy="20" r="20" fill="purple" />
-    <text x="50" y="50" font-family="sans-serif" font-size="12px" fill="red">circle<text>
+    <image href="https://cmik2.github.io/starbuckslogo.png" height="100" width="100"/>
+    <text x="50" y="50" font-family="sans-serif" font-size="18px" fill="red">
+    How Starbucks become an international coffee company
+    <text>
 </svg>
-<div id="my_logo"></div>
-<script>
-var svglogo = d3.select("#my_logo")
-  .append("svg")
-  .append("g").append('image')
-    .attr('xlink:href', 'https://cmik2.github.io/starbuckslogo.png')
-    .attr('width', 100)
-    .attr('height', 100);
-</script>
-<div id="my_title"></div>
-<script>
-var svglogo = d3.select("#my_title")
-  .append("svg")
-  .append("g").append('text')
-    .attr('width', 200)
-    .attr('height', 100)
-    .style("position","absolute")
-    .style("top", 10 + "px");
-    .style("left", 70 + "px");
-    .text("How Starbucks become an international coffee company")
-}
-</script>
 <div>
 <a href="https://cmik2.github.io/scene2.html" rel="next">Next</a>
 </div>
