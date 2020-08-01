@@ -93,7 +93,7 @@ d3.csv("https://cmik2.github.io/datasets/starbucks_timeline.csv",
     // Add X axis --> it is a year format
    var x = d3.scaleLinear()
      .domain(d3.extent(data, function(d) { return d.year; }))
-     .range([ 0, width ]);
+     .range([ 0, width+10 ]);
    svg.append("g")
      .attr("transform", "translate(0," + height + ")")
      .call(d3.axisBottom(x).ticks(data.length).tickFormat(d3.format("d")))
