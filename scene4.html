@@ -56,7 +56,7 @@ d3.csv("https://cmik2.github.io/stores_by_country.csv", function(data) {
   // Color palette for continents?
   var color = d3.scaleOrdinal()
     .domain(["Asia", "Europe", "Africa", "Oceania", "Americas"])
-    .range(["red","blue","steelblue","orange","pink"]);
+    .range(["red","steelblue","pink","orange","blue"]);
 
   // Size scale for countries
   var size = d3.scaleLinear()
