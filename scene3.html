@@ -19,10 +19,10 @@ How Starbucks became an international coffee giant
 
 <div style="width:600px;">
 <h2>
-See how many billions of dollars Starbucks makes!
+See how many Starbucks stores exist in the United States!
 </h2>
 <h3>
-Look at the upslope! Starbucks has been showing impressive revenue growth throughout the years.
+No wonder why we see so many Starbucks everywhere.
 </h3>
 </div>
 
@@ -76,6 +76,15 @@ d3.csv("https://cmik2.github.io/datasets/number-of-starbucks.csv", function(data
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
+   // text label for the y axis
+  svg.append("text")
+     .attr("transform", "rotate(-90)")
+     .attr("y", 0 - margin.left)
+     .attr("x",0 - (height / 2))
+     .attr("dy", "1em")
+     .style("text-anchor", "middle")
+     .text("Number of Stores in US");
+
 
   // color palette = one color per subgroup
   var color = d3.scaleOrdinal()
