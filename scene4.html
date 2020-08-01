@@ -72,7 +72,7 @@ d3.csv("https://cmik2.github.io/stores_by_country.csv", function(data) {
     .style("border", "solid")
     .style("border-width", "2px")
     .style("border-radius", "5px")
-    .style("padding", "10px")
+    .style("padding", "50px")
 
   // Three function that change the tooltip when user hover / move / leave a cell
   var mouseover = function(d) {
@@ -97,7 +97,7 @@ d3.csv("https://cmik2.github.io/stores_by_country.csv", function(data) {
     .enter()
     .append("circle")
       .attr("class", "node")
-      .attr("r", function(d){ return size(d.value)})
+      .attr("r", function(d){ return size(d.value)+ 100})
       .attr("cx", width / 2)
       .attr("cy", height / 2)
       .style("fill", function(d){ return color(d.region)})
