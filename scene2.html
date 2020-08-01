@@ -75,6 +75,14 @@ d3.csv("https://cmik2.github.io/revenue-of-starbucks-wld.csv",
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
+   // text label for the y axis
+    svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Revenue in Billion");
 
     // Add the line
     svg.append("path")
