@@ -97,7 +97,7 @@ d3.csv("https://cmik2.github.io/stores_by_country.csv", function(data) {
     .enter()
     .append("circle")
       .attr("class", "node")
-      .attr("r", function(d){ return size(d.value)*5})
+      .attr("r", function(d){ return size(d.value)})
       .attr("cx", width / 2)
       .attr("cy", height / 2)
       .style("fill", function(d){ return color(d.region)})
