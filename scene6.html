@@ -15,20 +15,17 @@
 
 <div id="my_text"></div>
 <script>
-var svg = d3.select("#my_text")
-var margin = {top: 0, right: 10, bottom: 10, left: 10},
-    width = 1240 - margin.left - margin.right,
-    height = 100 - margin.top - margin.bottom;
+var svgtext = d3.select("#my_text")
   .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", 1000)
+    .attr("height", 200)
   .append("g")
     .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-var logo_image = svg.append('image')
+          "translate(" + 30 + "," + 10 + ")");
+var logo_image = svgtext.append('image')
     .attr('xlink:href', 'http://cmik2.github.io/starbuckslogo.png')
-    .attr('width', 200)
-    .attr('height', 200)
+    .attr('width', 50)
+    .attr('height', 50)
     .attr("style", "width:90%; background-color:blue; height: 150px");
 </script>
 
