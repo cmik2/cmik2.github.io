@@ -56,9 +56,9 @@ var legend = svg.append("g")
 legend.append("circle").attr("cx",10).attr("cy",5).attr("r", 6).style("fill", "blue")
 legend.append("circle").attr("cx",110).attr("cy",5).attr("r", 6).style("fill", "red")
 legend.append("circle").attr("cx",210).attr("cy",5).attr("r", 6).style("fill", "steelblue")
-legend.append("text").attr("x", 15).attr("y", 5).text("Americas").style("font-size", "15px").attr("alignment-baseline","middle")
-legend.append("text").attr("x", 115).attr("y", 5).text("Asia").style("font-size", "15px").attr("alignment-baseline","middle")
-legend.append("text").attr("x", 215).attr("y", 5).text("Europe").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 20).attr("y", 5).text("Americas").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 120).attr("y", 5).text("Asia").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 220).attr("y", 5).text("Europe").style("font-size", "15px").attr("alignment-baseline","middle")
 
 // Read data
 d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) {
@@ -76,13 +76,18 @@ d3.csv("https://cmik2.github.io/datasets/stores_by_country.csv", function(data) 
   // create a tooltip
   var Tooltip = d3.select("#my_dataviz")
     .append("div")
+    .style("position", "absolute")
     .style("opacity", 0)
     .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
+    .style("z-index", "10")
+    .style("background", "lightsteelblue")
+    .style("border","0px")
     .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
+    .style("border-radius", "8px")
+    .style("font","12px sans-serif")
+    .style("padding", "2px")
+    .style("width","150px")
+    .style("height","200px")
 
   // Three function that change the tooltip when user hover / move / leave a cell
   var mouseover = function(d) {
