@@ -67,6 +67,16 @@ var tooltip = d3.select("body")
                         .style("background", "lightsteelblue")
                         .style("visibility", "hidden");
 
+var legend = svg.append("g")
+  .attr("class","legend")
+  .attr("transform","translate(50,30)")
+  .style("font-size","8px");
+
+legend.append("circle").attr("cx",10).attr("cy",5).attr("r", 6).style("fill", "red")
+legend.append("circle").attr("cx",110).attr("cy",5).attr("r", 6).style("fill", "blue")
+legend.append("text").attr("x", 20).attr("y", 5).text("Operated by Starbucks").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 120).attr("y", 5).text("Licensed").style("font-size", "15px").attr("alignment-baseline","middle")
+
 // Parse the Data
 d3.csv("https://cmik2.github.io/datasets/number-of-starbucks.csv", function(data) {
 
@@ -137,8 +147,10 @@ d3.csv("https://cmik2.github.io/datasets/number-of-starbucks.csv", function(data
         .attr("height", function(d) { return y(d[0]) - y(d[1]); })
         .attr("width",x.bandwidth())
         .on("mouseover", function(d){
-            tooltip.text("Year:" + d.data.year + "\n" + "Licensed:" + "\n" + d[0] + "\n" + "OperatedByStarbucks:" + (d[1] - d[0]) + "\n" + "Total:" + d[1])
+            if (d[0] > 0) {
+            tooltip.text("Year:" + d.data.year + "\n" + "Licensed:" + "\n" + d[0] + "\n" + "OpByStarbucks:" + (d[1] - d[0]) + "\n" + "Total:" + d[1])
             tooltip.style("visibility", "visible");
+            }
         })
         .on("mousemove", function(d,i){
                    return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
