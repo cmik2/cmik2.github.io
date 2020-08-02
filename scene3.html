@@ -59,8 +59,8 @@ var tooltip = d3.select("body")
                         .append("div")
                         .style("position", "absolute")
                         .style("z-index", "10")
-                        .style("width","150px")
-                        .style("height","70px")
+                        .style("width","120px")
+                        .style("height","60px")
                         .style("padding","2px")
                         .style("font","12px sans-serif")
                         .style("border","0px")
@@ -149,10 +149,7 @@ d3.csv("https://cmik2.github.io/datasets/number-of-starbucks.csv", function(data
         .attr("width",x.bandwidth())
         .on("mouseover", function(d){
             if (d[0] > 0) {
-            tooltip.text("Year:" + d.data.year).attr("dy","0em")
-	    tooltip.text("Licensed:" + (d[1] - d[0])).attr("dy","0em")
-	    tooltip.text("OpByStarbucks:" + d[0]).attr("dy","0em")
-	    tooltip.text("Total:" + d[1])
+            tooltip.text("Year:" + d.data.year + "Licensed:" + (d[1] - d[0]) + "OpByStarbucks:" + d[0] + "Total:" + d[1]);
             tooltip.style("visibility", "visible");
             }
         })
