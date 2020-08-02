@@ -149,7 +149,10 @@ d3.csv("https://cmik2.github.io/datasets/number-of-starbucks.csv", function(data
         .attr("width",x.bandwidth())
         .on("mouseover", function(d){
             if (d[0] > 0) {
-            tooltip.text("Year:" + d.data.year + "<br>" + "Licensed:" + (d[1] - d[0])+ "<br>" + "OpByStarbucks:" + d[0]  + "<br>" + "Total:" + d[1])
+            tooltip.text("Year:" + d.data.year).attr("dy","0em")
+	    tooltip.text("Licensed:" + (d[1] - d[0])).attr("dy","0em")
+	    tooltip.text("OpByStarbucks:" + d[0]).attr("dy","0em")
+	    tooltip.text("Total:" + d[1])
             tooltip.style("visibility", "visible");
             }
         })
